@@ -344,3 +344,52 @@ page {
   transform: scale(0.95);
   background: #eee;
 }
+
+.audio-button {
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.audio-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff !important;
+  border: 2rpx solid #ddd !important;
+}
+
+.audio-icon {
+  font-size: 36rpx;
+  margin-right: 10rpx;
+}
+
+.top-audio-btn {
+  position: fixed;
+  top: 20rpx;
+  right: 30rpx;
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  background: #07c160;
+  border-radius: 32rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0,0,0,0.1);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.top-audio-btn:active {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
+.top-audio-btn .audio-icon {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+  color: #fff;
+}
+
+.top-audio-btn .audio-text {
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: 500;
+}

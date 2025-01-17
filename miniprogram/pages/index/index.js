@@ -165,5 +165,12 @@ Page({
     wx.navigateTo({
       url: `/pages/story/index?animal=${animal.name}&scene=${scene.name}&style=${style.name}`
     });
+  },
+
+  // 跳转到音频播放页面
+  goToAudioPage() {
+    wx.navigateTo({
+      url: '/pages/audio/index'
+    });
   }
 });

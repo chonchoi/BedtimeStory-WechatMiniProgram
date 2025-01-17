@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/audio/index",
     "pages/story/index"
   ],
   "window": {

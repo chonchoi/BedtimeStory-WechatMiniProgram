@@ -24,6 +24,12 @@
 
   <!-- 主内容 -->
   <view class="main-content" wx:else>
+    <!-- 顶部音频按钮 -->
+    <view class="top-audio-btn" bindtap="goToAudioPage">
+      <text class="audio-icon">🎵</text>
+      <text class="audio-text">听故事</text>
+    </view>
+
     <view class="section">
       <view class="section-header">
         <view class="section-title">选择主角小动物</view>
@@ -103,6 +109,11 @@
         type="primary"
         bindtap="goToStoryPage"
       >开始生成故事</button>
+      <button 
+        class="weui-btn weui-btn_default"
+        bindtap="goToAudioPage"
+        style="margin-top: 20rpx;"
+      >播放故事音频</button>
     </view>
   </view>
 

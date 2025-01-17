@@ -1,21 +1,14 @@
 <view class="container">
-  <!-- 故事展示 -->
   <view class="story-section">
     <view class="story-container">
       <view class="story-header" wx:if="{{story}}">
-        <text class="story-timestamp">{{story.timestamp}}</text>
+        <text class="story-title">睡前故事</text>
         <view class="story-controls">
           <button class="control-btn" bindtap="toggleFontSize">
             <image class="control-icon" src="/images/font-size.png" />
           </button>
           <button class="control-btn" bindtap="toggleReading">
             <image class="control-icon" src="{{isReading ? '/images/pause.png' : '/images/play.png'}}" />
-          </button>
-          <button class="control-btn" bindtap="toggleFavorite">
-            <image class="control-icon" src="{{isFavorited ? '/images/heart-filled.png' : '/images/heart.png'}}" />
-          </button>
-          <button class="control-btn" bindtap="showSharePanel">
-            <image class="control-icon" src="/images/share.png" />
           </button>
         </view>
       </view>
@@ -36,59 +29,4 @@
       </view>
     </view>
   </view>
-
-  <!-- 底部按钮 -->
-  <view class="button-group">
-    <button 
-      class="action-btn secondary" 
-      bindtap="restart"
-      disabled="{{isGenerating}}"
-    >
-      <image class="icon" src="/images/refresh.png" />
-      再来一个故事
-    </button>
-    <button 
-      class="action-btn primary" 
-      open-type="share"
-      disabled="{{isGenerating}}"
-    >
-      <image class="icon" src="/images/share-white.png" />
-      分享故事
-    </button>
-  </view>
-
-  <!-- 分享面板 -->
-  <view class="share-panel {{showSharePanel ? 'visible' : ''}}">
-    <view class="share-title">分享到</view>
-    <view class="share-options">
-      <view class="share-option" bindtap="shareToTimeline">
-        <view class="share-icon">
-          <image src="/images/moments.png" />
-        </view>
-        <text class="share-name">朋友圈</text>
-      </view>
-      <view class="share-option" bindtap="shareToFriend">
-        <view class="share-icon">
-          <image src="/images/wechat.png" />
-        </view>
-        <text class="share-name">微信好友</text>
-      </view>
-      <view class="share-option" bindtap="copyLink">
-        <view class="share-icon">
-          <image src="/images/link.png" />
-        </view>
-        <text class="share-name">复制链接</text>
-      </view>
-      <view class="share-option" bindtap="saveImage">
-        <view class="share-icon">
-          <image src="/images/download.png" />
-        </view>
-        <text class="share-name">保存图片</text>
-      </view>
-    </view>
-    <button class="share-cancel" bindtap="hideSharePanel">取消</button>
-  </view>
-
-  <!-- 遮罩层 -->
-  <view class="mask {{showSharePanel ? 'visible' : ''}}" bindtap="hideSharePanel"></view>
 </view> 
