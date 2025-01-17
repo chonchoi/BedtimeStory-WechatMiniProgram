@@ -46,10 +46,10 @@
 - Secret Token = pat_VFbizD1rUOTOgztlvjS8SP8Uc2pBwHBOr1RiWZ8KhmTYj6fQEG8jIyfrbywBeRFg
 - Workflow ID = 7460787727132819468
 
-### 扣子执行工作流（流式响应）
+### 扣子执行工作流（同步响应）
 
 ##### 请求地址
-https://api.coze.cn/v1/workflow/stream_run
+https://api.coze.cn/v1/workflow/run
 
 ##### Header
 - Authorization Bearer $Access_Token
@@ -58,3 +58,25 @@ https://api.coze.cn/v1/workflow/stream_run
 ##### Body
 - workflow_id: 7460787727132819468
 - parameters: map[String]Any
+
+##### 请求示例
+curl --location --request POST 'https://api.coze.cn/v1/workflow/run' \ 
+--header 'Authorization: Bearer pat_hfwkehfncaf****' \ 
+--header 'Content-Type: application/json' \ 
+--data-raw '{ 
+    "workflow_id": "73664689170551*****", 
+    "parameters": { 
+        "user_id":"12345", 
+        "user_name":"George" 
+    } 
+}' 
+
+##### 响应示例
+{ 
+    "code": 0, 
+    "cost": "0", 
+    "data": "{\"output\":\"北京的经度为116.4074°E，纬度为39.9042°N。\"}", 
+    "debug_url": "https://www.coze.cn/work_flow?execute_id=741364789030728****&space_id=736142423532160****&workflow_id=738958910358870****", 
+    "msg": "Success", 
+    "token": 98 
+} 

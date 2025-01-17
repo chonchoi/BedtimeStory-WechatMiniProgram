@@ -1,0 +1,12 @@
+{
+  "name": "bedtimestory",
+  "version": "1.0.0",
+  "description": "一个为儿童设计的微信小程序，通过有趣的小动物按钮交互，为孩子们带来温馨的睡前故事。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

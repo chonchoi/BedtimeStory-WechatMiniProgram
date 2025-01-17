@@ -1,13 +1,15 @@
 /**index.wxss**/
 
 page {
-  /* padding-top: 54rpx; */
   padding-bottom: 60rpx;
-  background-color: #fff;
+  background-color: #f5f7fa;
 }
 
 .container {
   padding: 30rpx 20rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #fff;
 }
 
 .section {
@@ -19,6 +21,7 @@ page {
   color: #333;
   margin-bottom: 20rpx;
   padding-left: 20rpx;
+  font-weight: 500;
 }
 
 .selection-grid {
@@ -34,9 +37,10 @@ page {
   align-items: center;
   justify-content: center;
   background: #fff;
-  padding: 20rpx;
+  padding: 30rpx 20rpx;
   border-radius: 16rpx;
   box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+  border: 2rpx solid #eee;
 }
 
 .selection-item.selected {
@@ -61,8 +65,13 @@ page {
   border-radius: 44rpx;
   font-size: 32rpx;
   color: #fff;
-  background: #1890ff;
+  background: #07c160;
   margin-bottom: 20rpx;
+}
+
+.generate-btn[disabled] {
+  background: #ccc;
+  color: #fff;
 }
 
 .story-container {
@@ -133,19 +142,6 @@ page {
   line-height: 1.6;
 }
 
-.generate-btn {
-  background: #07c160;
-  color: white;
-  border-radius: 24px;
-  padding: 8px 32px;
-  margin: 20px 0;
-}
-
-.generate-btn[disabled] {
-  background: #ccc;
-  color: #fff;
-}
-
 .restart-btn {
   margin-top: 30rpx;
   width: 100%;
@@ -155,4 +151,59 @@ page {
   font-size: 32rpx;
   color: #333;
   background: #f5f5f5;
+}
+
+/* 骨架屏样式 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.skeleton-section {
+  margin-bottom: 30px;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 150px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 0.3s infinite;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.skeleton-item {
+  height: 80px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 0.3s infinite;
+  border-radius: 8px;
+}
+
+.skeleton-button {
+  height: 44px;
+  width: 80%;
+  margin: 30px auto;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 0.3s infinite;
+  border-radius: 22px;
 }
