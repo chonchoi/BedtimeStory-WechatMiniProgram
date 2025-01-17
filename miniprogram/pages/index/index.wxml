@@ -20,7 +20,6 @@
         <view class="skeleton-item" wx:for="{{[1,2,3,4]}}" wx:key="*this"></view>
       </view>
     </view>
-    <view class="skeleton-button"></view>
   </view>
 
   <!-- 主内容 -->
@@ -34,9 +33,11 @@
           class="selection-item {{selectedAnimal === item.id ? 'selected' : ''}}"
           bindtap="selectAnimal"
           data-id="{{item.id}}"
+          hover-class="hover"
         >
           <text class="emoji">{{item.emoji}}</text>
-          <text>{{item.name}}</text>
+          <text class="selection-name">{{item.name}}</text>
+          <text class="selection-desc">{{item.description}}</text>
         </view>
       </view>
     </view>
@@ -50,9 +51,11 @@
           class="selection-item {{selectedScene === item.id ? 'selected' : ''}}"
           bindtap="selectScene"
           data-id="{{item.id}}"
+          hover-class="hover"
         >
           <text class="emoji">{{item.emoji}}</text>
-          <text>{{item.name}}</text>
+          <text class="selection-name">{{item.name}}</text>
+          <text class="selection-desc">{{item.description}}</text>
         </view>
       </view>
     </view>
@@ -66,19 +69,31 @@
           class="selection-item {{selectedStyle === item.id ? 'selected' : ''}}"
           bindtap="selectStyle"
           data-id="{{item.id}}"
+          hover-class="hover"
         >
           <text class="emoji">{{item.emoji}}</text>
-          <text>{{item.name}}</text>
+          <text class="selection-name">{{item.name}}</text>
+          <text class="selection-desc">{{item.description}}</text>
         </view>
       </view>
     </view>
 
-    <!-- 操作按钮 -->
+    <!-- 底部固定按钮 -->
     <view class="button-group" wx:if="{{selectedAnimal && selectedScene && selectedStyle}}">
       <button 
         class="generate-btn" 
         bindtap="goToStoryPage"
+        hover-class="button-hover"
       >开始生成故事</button>
+    </view>
+  </view>
+
+  <!-- 新手引导遮罩 -->
+  <view class="guide-mask" wx:if="{{showGuide}}" bindtap="closeGuide">
+    <view class="guide-content" catchtap="preventBubble">
+      <view class="guide-title">欢迎来到小小睡前故事</view>
+      <view class="guide-desc">让我们一起创造一个独特的睡前故事吧！首先选择一个可爱的小动物作为故事主角~</view>
+      <view class="guide-btn" bindtap="closeGuide">知道啦</view>
     </view>
   </view>
 </view>
