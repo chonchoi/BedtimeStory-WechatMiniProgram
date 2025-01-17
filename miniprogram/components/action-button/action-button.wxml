@@ -1,0 +1,7 @@
+<button 
+  class="action-button {{type}} {{disabled ? 'disabled' : ''}}"
+  bindtap="handleTap"
+>
+  <view wx:if="{{loading}}" class="weui-loading"></view>
+  <text>{{text}}</text>
+</button> 

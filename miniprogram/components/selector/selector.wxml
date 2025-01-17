@@ -1,0 +1,15 @@
+<view class="selector">
+  <view class="selector-title">{{title}}</view>
+  <view class="selector-options">
+    <view 
+      wx:for="{{options}}" 
+      wx:key="id"
+      class="selector-option {{selected === item.id ? 'selected' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="handleSelect"
+    >
+      <text class="emoji">{{item.emoji}}</text>
+      <text class="name">{{item.name}}</text>
+    </view>
+  </view>
+</view> 

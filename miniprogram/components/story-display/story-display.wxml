@@ -1,0 +1,12 @@
+<view class="story-display">
+  <view wx:if="{{loading}}" class="loading">
+    <view class="weui-loading"></view>
+    <text>正在生成故事...</text>
+  </view>
+  <view wx:elif="{{story}}" class="content">
+    <text>{{story}}</text>
+  </view>
+  <view wx:else class="empty">
+    <text>请选择小动物、场景和风格后生成故事</text>
+  </view>
+</view> 

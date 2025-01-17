@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "story-display": "/components/story-display/story-display",
+    "action-button": "/components/action-button/action-button"
+  }
+}

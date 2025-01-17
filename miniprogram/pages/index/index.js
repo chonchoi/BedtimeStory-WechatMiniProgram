@@ -9,19 +9,31 @@ Page({
       { id: 'rabbit', name: '小兔子', emoji: '🐰' },
       { id: 'bear', name: '小熊', emoji: '🐻' },
       { id: 'cat', name: '小猫', emoji: '🐱' }, 
-      { id: 'dog', name: '小狗', emoji: '🐶' }
+      { id: 'dog', name: '小狗', emoji: '🐶' },
+      { id: 'panda', name: '小熊猫', emoji: '🐼' },
+      { id: 'fox', name: '小狐狸', emoji: '🦊' },
+      { id: 'hamster', name: '小仓鼠', emoji: '🐹' },
+      { id: 'penguin', name: '小企鹅', emoji: '🐧' }
     ],
     scenes: [
       { id: 'forest', name: '森林', emoji: '🌳' },
       { id: 'home', name: '家里', emoji: '🏠' },
       { id: 'park', name: '公园', emoji: '🎡' },
-      { id: 'school', name: '学校', emoji: '🏫' }
+      { id: 'school', name: '学校', emoji: '🏫' },
+      { id: 'beach', name: '海滩', emoji: '🏖️' },
+      { id: 'farm', name: '农场', emoji: '🌾' },
+      { id: 'zoo', name: '动物园', emoji: '🦁' },
+      { id: 'space', name: '太空', emoji: '🚀' }
     ],
     styles: [
       { id: 'funny', name: '搞笑', emoji: '😆' },
       { id: 'warm', name: '温馨', emoji: '🌟' },
       { id: 'adventure', name: '冒险', emoji: '🗺️' },
-      { id: 'education', name: '教育', emoji: '📚' }
+      { id: 'education', name: '教育', emoji: '📚' },
+      { id: 'magic', name: '魔法', emoji: '✨' },
+      { id: 'mystery', name: '神秘', emoji: '🔮' },
+      { id: 'friendship', name: '友情', emoji: '🤝' },
+      { id: 'courage', name: '勇气', emoji: '💪' }
     ],
     
     // 已选择的值
