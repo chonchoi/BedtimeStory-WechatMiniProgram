@@ -3,37 +3,179 @@ const { QuickStartPoints, QuickStartSteps } = require("./constants");
 
 Page({
   data: {
-    story: null
+    // 选择数据
+    animals: [
+      { id: 'rabbit', name: '小兔子', emoji: '🐰' },
+      { id: 'bear', name: '小熊', emoji: '🐻' },
+      { id: 'cat', name: '小猫', emoji: '🐱' }, 
+      { id: 'dog', name: '小狗', emoji: '🐶' }
+    ],
+    scenes: [
+      { id: 'forest', name: '森林', emoji: '🌳' },
+      { id: 'home', name: '家里', emoji: '🏠' },
+      { id: 'park', name: '公园', emoji: '🎡' },
+      { id: 'school', name: '学校', emoji: '🏫' }
+    ],
+    styles: [
+      { id: 'funny', name: '搞笑', emoji: '😆' },
+      { id: 'warm', name: '温馨', emoji: '🌟' },
+      { id: 'adventure', name: '冒险', emoji: '🗺️' },
+      { id: 'education', name: '教育', emoji: '📚' }
+    ],
+    
+    // 已选择的值
+    selectedAnimal: '',
+    selectedScene: '', 
+    selectedStyle: '',
+    
+    // 生成的故事
+    story: null,
   },
 
-  // 模拟调用扣子工作流 API
-  getStory(e) {
-    const animal = e.currentTarget.dataset.animal;
-    
-    // 模拟 API 调用
-    setTimeout(() => {
-      const stories = {
-        rabbit: {
-          title: "小兔子的胡萝卜",
-          content: "从前有一只爱吃胡萝卜的小兔子,它在森林里种了一大片胡萝卜。有一天,它发现最大的一根胡萝卜不见了!原来是森林里的小动物们偷偷拿去办派对了。小兔子不但没有生气,还和大家一起分享了美味的胡萝卜派,从此森林里的小动物们都变成了好朋友。🥕✨"
-        },
-        bear: {
-          title: "小熊采蜂蜜",
-          content: "森林里住着一只贪吃的小熊,它最喜欢的就是甜甜的蜂蜜。一天,它闻到了香甜的蜂蜜味,但蜂巢在很高的树上。小熊想了个好主意,它邀请了长颈鹿帮忙,自己站在长颈鹿的脖子上,终于够到了蜂巢。小熊和长颈鹿分享了美味的蜂蜜,这是它吃过的最香甜的蜂蜜。🍯💫"
-        },
-        cat: {
-          title: "小猫钓鱼",
-          content: "有一天,小猫来到小河边想要钓鱼。它把鱼竿甩来甩去,却总是钓不到鱼。这时,一只老渔夫告诉它要有耐心。小猫学会了安静地等待,终于钓到了一条大鱼!它把鱼送给了照顾它的老奶奶,老奶奶高兴地做了一顿美味的鱼汤。🐟🎣"
-        },
-        dog: {
-          title: "小狗守家",
-          content: "这是一只非常尽职的小狗,每天都认真地守护着主人的家。一天晚上,它发现一只迷路的小鸟在外面淋雨。小狗把小鸟请到屋檐下躲雨,还分享了自己的狗粮。第二天太阳出来后,小鸟唱着歌飞走了,但每天早上都会飞来看望小狗,给它带来美妙的歌声。🏠🎵"
-        }
-      };
+  // 选择动物
+  selectAnimal(e) {
+    const animal = e.currentTarget.dataset.id;
+    this.setData({
+      selectedAnimal: animal
+    });
+  },
 
-      this.setData({
-        story: stories[animal]
+  // 选择场景
+  selectScene(e) {
+    const scene = e.currentTarget.dataset.id;
+    this.setData({
+      selectedScene: scene
+    });
+  },
+
+  // 选择风格
+  selectStyle(e) {
+    const style = e.currentTarget.dataset.id;
+    this.setData({
+      selectedStyle: style
+    });
+  },
+
+  // 生成故事
+  generateStory: function() {
+    const that = this;
+    if (!this.data.selectedAnimal || !this.data.selectedScene || !this.data.selectedStyle) {
+      wx.showToast({
+        title: '请先完成所有选择',
+        icon: 'none'
       });
-    }, 500);
+      return;
+    }
+
+    wx.showLoading({
+      title: '正在生成故事...',
+    });
+
+    // 准备参数
+    const params = {
+      animal: this.getAnimalName(this.data.selectedAnimal),
+      scene: this.getSceneName(this.data.selectedScene),
+      style: this.getStyleName(this.data.selectedStyle)
+    };
+
+    // 调用扣子API
+    wx.request({
+      url: 'https://api.coze.cn/v1/workflow/stream_run',
+      method: 'POST',
+      header: {
+        'Authorization': 'Bearer pat_VFbizD1rUOTOgztlvjS8SP8Uc2pBwHBOr1RiWZ8KhmTYj6fQEG8jIyfrbywBeRFg',
+        'Content-Type': 'application/json'
+      },
+      data: {
+        workflow_id: '7460787727132819468',
+        parameters: params
+      },
+      success(res) {
+        wx.hideLoading();
+        console.log('API响应:', res.data);
+        
+        try {
+          // 将响应文本按行分割
+          const lines = res.data.split('\n');
+          
+          // 遍历每一行
+          for (const line of lines) {
+            // 跳过空行
+            if (!line.trim()) continue;
+            
+            // 解析事件数据
+            const eventMatch = line.match(/^event: (.+)/);
+            const dataMatch = line.match(/^data: (.+)/);
+            
+            // 如果是消息事件且包含内容
+            if (eventMatch && eventMatch[1] === 'Message' && dataMatch) {
+              try {
+                const eventData = JSON.parse(dataMatch[1]);
+                if (eventData.content) {
+                  const contentObj = JSON.parse(eventData.content);
+                  if (contentObj.output) {
+                    that.setData({
+                      story: contentObj.output
+                    });
+                    return;
+                  }
+                }
+              } catch (e) {
+                console.error('解析事件数据失败:', e);
+              }
+            }
+          }
+
+          // 如果没有找到有效内容
+          wx.showToast({
+            title: '生成故事失败',
+            icon: 'none'
+          });
+        } catch (error) {
+          console.error('解析响应失败:', error);
+          console.log('错误详情:', error.message);
+          wx.showToast({
+            title: '生成故事失败',
+            icon: 'none'
+          });
+        }
+      },
+      fail(error) {
+        wx.hideLoading();
+        wx.showToast({
+          title: '生成故事失败',
+          icon: 'none'
+        });
+        console.error('调用扣子API失败:', error);
+      }
+    });
+  },
+
+  // 获取动物名称
+  getAnimalName(id) {
+    const animal = this.data.animals.find(a => a.id === id);
+    return animal ? animal.name : '';
+  },
+
+  // 获取场景名称
+  getSceneName(id) {
+    const scene = this.data.scenes.find(s => s.id === id);
+    return scene ? scene.name : '';
+  },
+
+  // 获取风格名称
+  getStyleName(id) {
+    const style = this.data.styles.find(s => s.id === id);
+    return style ? style.name : '';
+  },
+
+  // 重新开始
+  restart: function() {
+    this.setData({
+      selectedAnimal: null,
+      selectedScene: null,
+      selectedStyle: null,
+      story: null
+    });
   }
 });

@@ -1,0 +1,80 @@
+.container {
+  padding: 40rpx 20rpx;
+}
+
+.step-tips {
+  text-align: center;
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 40rpx;
+}
+
+.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30rpx;
+  padding: 20rpx;
+}
+
+.selection-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.selection-item.selected {
+  background: #e6f7ff;
+  border: 2rpx solid #1890ff;
+}
+
+.emoji {
+  font-size: 48rpx;
+  margin-bottom: 10rpx;
+}
+
+.button-group {
+  margin-top: 60rpx;
+  padding: 0 40rpx;
+}
+
+.generate-btn, .restart-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  color: #fff;
+  background: #1890ff;
+  margin-bottom: 20rpx;
+}
+
+.restart-btn {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.story-container {
+  margin-top: 40rpx;
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 16rpx;
+}
+
+.story-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.story-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+} 

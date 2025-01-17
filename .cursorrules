@@ -27,9 +27,34 @@
 
 ### 功能
 
-- 在界面中展示小动物的按钮
+- 在界面中展示「用户动线」
 - 用户点击某按钮后调用「扣子工作流」的 API 并展示工作流执行结果
 
 ### 扣子工作流
 
 - 由 AI 模拟一个假接口
+
+### 用户动线
+
+- 用户先选择「小动物」
+- 用户再选择「场景」
+- 用户最后选择「风格」
+- 用户点击「确定」按钮后开始生成故事
+- 用户点击「重来」按钮后重新选择小动物、场景和风格
+
+### 扣子配置
+- Secret Token = pat_VFbizD1rUOTOgztlvjS8SP8Uc2pBwHBOr1RiWZ8KhmTYj6fQEG8jIyfrbywBeRFg
+- Workflow ID = 7460787727132819468
+
+### 扣子执行工作流（流式响应）
+
+##### 请求地址
+https://api.coze.cn/v1/workflow/stream_run
+
+##### Header
+- Authorization Bearer $Access_Token
+- Content-Type application/json
+
+##### Body
+- workflow_id: 7460787727132819468
+- parameters: map[String]Any

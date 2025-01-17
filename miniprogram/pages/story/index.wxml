@@ -1,0 +1,71 @@
+<view class="container">
+  <!-- 步骤提示 -->
+  <view class="step-tips">
+    <text wx:if="{{currentStep === 'animal'}}">第一步: 选择主角小动物</text>
+    <text wx:elif="{{currentStep === 'scene'}}">第二步: 选择故事发生的地点</text>
+    <text wx:elif="{{currentStep === 'style'}}">第三步: 选择故事的风格</text>
+  </view>
+
+  <!-- 动物选择 -->
+  <view class="selection-grid" wx:if="{{currentStep === 'animal'}}">
+    <view 
+      wx:for="{{animals}}" 
+      wx:key="id"
+      class="selection-item {{selectedAnimal === item.id ? 'selected' : ''}}"
+      bindtap="selectAnimal"
+      data-id="{{item.id}}"
+    >
+      <text class="emoji">{{item.emoji}}</text>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 场景选择 -->
+  <view class="selection-grid" wx:if="{{currentStep === 'scene'}}">
+    <view 
+      wx:for="{{scenes}}" 
+      wx:key="id"
+      class="selection-item {{selectedScene === item.id ? 'selected' : ''}}"
+      bindtap="selectScene"
+      data-id="{{item.id}}"
+    >
+      <text class="emoji">{{item.emoji}}</text>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 风格选择 -->
+  <view class="selection-grid" wx:if="{{currentStep === 'style'}}">
+    <view 
+      wx:for="{{styles}}" 
+      wx:key="id"
+      class="selection-item {{selectedStyle === item.id ? 'selected' : ''}}"
+      bindtap="selectStyle"
+      data-id="{{item.id}}"
+    >
+      <text class="emoji">{{item.emoji}}</text>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="button-group">
+    <button 
+      class="generate-btn" 
+      bindtap="generateStory"
+      wx:if="{{currentStep === 'style'}}"
+    >生成故事</button>
+    
+    <button 
+      class="restart-btn" 
+      bindtap="restart"
+      wx:if="{{story}}"
+    >重新开始</button>
+  </view>
+
+  <!-- 故事展示 -->
+  <view class="story-container" wx:if="{{story}}">
+    <view class="story-title">{{story.title}}</view>
+    <view class="story-content">{{story.content}}</view>
+  </view>
+</view> 
