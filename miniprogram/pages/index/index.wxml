@@ -5,19 +5,19 @@
     <view class="skeleton-section">
       <view class="skeleton-title"></view>
       <view class="skeleton-grid">
-        <view class="skeleton-item" wx:for="{{[1,2,3,4]}}" wx:key="*this"></view>
+        <view class="skeleton-item" wx:for="{{[1,2,3,4,5,6,7,8,9]}}" wx:key="*this"></view>
       </view>
     </view>
     <view class="skeleton-section">
       <view class="skeleton-title"></view>
       <view class="skeleton-grid">
-        <view class="skeleton-item" wx:for="{{[1,2,3,4]}}" wx:key="*this"></view>
+        <view class="skeleton-item" wx:for="{{[1,2,3,4,5,6,7,8,9]}}" wx:key="*this"></view>
       </view>
     </view>
     <view class="skeleton-section">
       <view class="skeleton-title"></view>
       <view class="skeleton-grid">
-        <view class="skeleton-item" wx:for="{{[1,2,3,4]}}" wx:key="*this"></view>
+        <view class="skeleton-item" wx:for="{{[1,2,3,4,5,6,7,8,9]}}" wx:key="*this"></view>
       </view>
     </view>
   </view>
@@ -25,7 +25,13 @@
   <!-- 主内容 -->
   <view class="main-content" wx:else>
     <view class="section">
-      <view class="section-title">选择主角小动物</view>
+      <view class="section-header">
+        <view class="section-title">选择主角小动物</view>
+        <view class="refresh-btn" bindtap="refreshOptions">
+          <text class="refresh-icon">🔄</text>
+          <text class="refresh-text">换一批</text>
+        </view>
+      </view>
       <view class="selection-grid">
         <view 
           wx:for="{{animals}}" 
@@ -43,7 +49,13 @@
     </view>
 
     <view class="section" wx:if="{{selectedAnimal}}">
-      <view class="section-title">选择故事发生的地点</view>
+      <view class="section-header">
+        <view class="section-title">选择故事发生的地点</view>
+        <view class="refresh-btn" bindtap="refreshOptions">
+          <text class="refresh-icon">🔄</text>
+          <text class="refresh-text">换一批</text>
+        </view>
+      </view>
       <view class="selection-grid">
         <view 
           wx:for="{{scenes}}" 
@@ -61,7 +73,13 @@
     </view>
 
     <view class="section" wx:if="{{selectedScene}}">
-      <view class="section-title">选择故事的风格</view>
+      <view class="section-header">
+        <view class="section-title">选择故事的风格</view>
+        <view class="refresh-btn" bindtap="refreshOptions">
+          <text class="refresh-icon">🔄</text>
+          <text class="refresh-text">换一批</text>
+        </view>
+      </view>
       <view class="selection-grid">
         <view 
           wx:for="{{styles}}" 
@@ -81,9 +99,9 @@
     <!-- 底部固定按钮 -->
     <view class="button-group" wx:if="{{selectedAnimal && selectedScene && selectedStyle}}">
       <button 
-        class="generate-btn" 
+        class="weui-btn weui-btn_primary"
+        type="primary"
         bindtap="goToStoryPage"
-        hover-class="button-hover"
       >开始生成故事</button>
     </view>
   </view>
