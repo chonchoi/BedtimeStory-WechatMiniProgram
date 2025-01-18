@@ -1,3 +1,5 @@
+const app = getApp();
+
 Page({
   data: {
     audioUrl: 'https://lf-bot-studio-plugin-resource.coze.cn/obj/bot-studio-platform-plugin-tos/artist/image/a20c176436e74fb4ac4e31f01936fcf3.mp3',
@@ -5,6 +7,9 @@ Page({
   },
 
   onLoad: function() {
+    // 打印用户 openId
+    getApp().logOpenId();
+
     // 创建音频上下文
     this.audioContext = wx.createInnerAudioContext()
     this.audioContext.src = this.data.audioUrl

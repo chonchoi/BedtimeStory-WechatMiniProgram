@@ -43,6 +43,9 @@ Page({
   },
 
   onLoad: function(options) {
+    // 打印用户 openId
+    getApp().logOpenId();
+    
     console.log('Story page options:', options);
     
     // 设置参数

@@ -70,6 +70,9 @@ Page({
   },
 
   onLoad() {
+    // 打印用户 openId
+    getApp().logOpenId();
+
     // 检查是否是首次使用
     const isFirstTime = !wx.getStorageSync('hasUsedBefore');
     if (isFirstTime) {
@@ -153,7 +156,7 @@ Page({
   },
 
   // 跳转到故事页面
-  goToStoryPage() {
+  async goToStoryPage() {
     const { selectedAnimal, selectedScene, selectedStyle } = this.data;
     
     // 获取选中项的名称
@@ -161,10 +164,36 @@ Page({
     const scene = this.data.scenes.find(s => s.id === selectedScene);
     const style = this.data.styles.find(s => s.id === selectedStyle);
 
-    // 跳转到故事页面，传递选择的参数
-    wx.navigateTo({
-      url: `/pages/story/index?animal=${animal.name}&scene=${scene.name}&style=${style.name}`
-    });
+    try {
+      // 获取数据库引用
+      const db = wx.cloud.database();
+      
+      // 获取当前秒级时间戳
+      const timestamp = Math.floor(Date.now() / 1000);
+      
+      // 插入数据到 story_list 表
+      const result = await db.collection('story_list').add({
+        data: {
+          animal: selectedAnimal,
+          scene: selectedScene,
+          style: selectedStyle,
+          is_ad_finished: false,
+          create_time: timestamp,
+          update_time: timestamp
+        }
+      });
+
+      // 跳转到故事页面，传递选择的参数和故事ID
+      wx.navigateTo({
+        url: `/pages/story/index?animal=${animal.name}&scene=${scene.name}&style=${style.name}&storyId=${result._id}`
+      });
+    } catch (error) {
+      console.error('插入故事记录失败：', error);
+      wx.showToast({
+        title: '创建故事失败，请重试',
+        icon: 'none'
+      });
+    }
   },
 
   // 跳转到音频播放页面
