@@ -1,12 +1,35 @@
 // app.js
 App({
-  onLaunch: function () {
+  onLaunch: async function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力');
-    } else {
+      wx.showToast({
+        title: '请升级微信版本',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    try {
+      const { envList } = require('./envList.js');
+      
+      // 初始化云开发
       wx.cloud.init({
-        env: 'prod-4gld73wt5d371d02',
+        env: envList[0].envId,
         traceUser: true,
+      });
+      
+      // 预调用一次云函数，提前完成冷启动
+      await wx.cloud.callFunction({
+        name: 'getOpenId'
+      });
+      
+      console.log('云开发初始化成功');
+    } catch (error) {
+      console.error('云开发初始化失败：', error);
+      wx.showToast({
+        title: '初始化失败，请重试',
+        icon: 'none'
       });
     }
   },
@@ -45,15 +68,23 @@ App({
       throw new Error('获取 openId 失败');
     } catch (error) {
       console.error('获取 openId 失败:', error);
+      wx.showToast({
+        title: '获取用户信息失败',
+        icon: 'none'
+      });
       throw error;
     }
   },
 
   // 打印当前用户 openId
   async logOpenId() {
-    if (!this.globalData.openId) {
-      await this.getOpenId();
+    try {
+      if (!this.globalData.openId) {
+        await this.getOpenId();
+      }
+      console.log('当前用户 openId:', this.globalData.openId);
+    } catch (error) {
+      console.error('打印 openId 失败:', error);
     }
-    console.log('当前用户 openId:', this.globalData.openId);
   }
 });

@@ -1,0 +1,51 @@
+<view class="container">
+  <!-- 骨架屏 -->
+  <view class="skeleton" wx:if="{{loading}}">
+    <view class="skeleton-item" wx:for="{{[1,2,3]}}" wx:key="*this">
+      <view class="skeleton-image"></view>
+      <view class="skeleton-content">
+        <view class="skeleton-title"></view>
+        <view class="skeleton-tags"></view>
+        <view class="skeleton-date"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 故事列表 -->
+  <view class="story-list" wx:else>
+    <block wx:if="{{stories.length > 0}}">
+      <view 
+        class="story-item" 
+        wx:for="{{stories}}" 
+        wx:key="_id" 
+        bindtap="onStoryTap" 
+        data-story="{{item}}"
+      >
+        <image 
+          class="story-cover" 
+          src="{{item.cover_url}}" 
+          mode="aspectFill"
+          lazy-load
+        ></image>
+        <view class="story-info">
+          <view class="story-title">{{item.title}}</view>
+          <view class="story-tags">
+            <text class="tag">🐾 {{item.animal}}</text>
+            <text class="tag">🌟 {{item.scene}}</text>
+            <text class="tag">✨ {{item.style}}</text>
+          </view>
+          <view class="story-meta">
+            <text class="story-date">{{item.created_at}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <image class="empty-image" src="/images/empty.png" mode="aspectFit"></image>
+      <view class="empty-text">还没有生成过故事哦～</view>
+      <view class="empty-subtext">快去首页生成一个吧！</view>
+    </view>
+  </view>
+</view> 

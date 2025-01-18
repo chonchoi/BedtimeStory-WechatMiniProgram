@@ -7,9 +7,6 @@
           <button class="control-btn" bindtap="toggleFontSize">
             <image class="control-icon" src="/images/font-size.png" />
           </button>
-          <button class="control-btn" bindtap="toggleReading">
-            <image class="control-icon" src="{{isReading ? '/images/pause.png' : '/images/play.png'}}" />
-          </button>
         </view>
       </view>
       

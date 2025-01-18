@@ -24,96 +24,84 @@
 
   <!-- 主内容 -->
   <view class="main-content" wx:else>
-    <!-- 顶部音频按钮 -->
-    <view class="top-audio-btn" bindtap="goToAudioPage">
-      <text class="audio-icon">🎵</text>
-      <text class="audio-text">听故事</text>
-    </view>
-
-    <view class="section">
-      <view class="section-header">
-        <view class="section-title">选择主角小动物</view>
-        <view class="refresh-btn" bindtap="refreshOptions">
+    <!-- 选择区域 -->
+    <view class="selection-section">
+      <!-- 动物选择 -->
+      <view class="selection-header">
+        <text class="selection-title">选择主角</text>
+        <view class="refresh-btn" bindtap="refreshAnimals">
           <text class="refresh-icon">🔄</text>
           <text class="refresh-text">换一批</text>
         </view>
       </view>
       <view class="selection-grid">
         <view 
-          wx:for="{{animals}}" 
-          wx:key="id"
           class="selection-item {{selectedAnimal === item.id ? 'selected' : ''}}"
+          wx:for="{{animals}}"
+          wx:key="id"
+          data-id="{{item.id}}"
           bindtap="selectAnimal"
-          data-id="{{item.id}}"
-          hover-class="hover"
         >
-          <text class="emoji">{{item.emoji}}</text>
+          <text class="emoji">{{item.icon}}</text>
           <text class="selection-name">{{item.name}}</text>
-          <text class="selection-desc">{{item.description}}</text>
         </view>
       </view>
-    </view>
 
-    <view class="section" wx:if="{{selectedAnimal}}">
-      <view class="section-header">
-        <view class="section-title">选择故事发生的地点</view>
-        <view class="refresh-btn" bindtap="refreshOptions">
+      <!-- 场景选择 -->
+      <view class="selection-header">
+        <text class="selection-title">选择场景</text>
+        <view class="refresh-btn" bindtap="refreshScenes">
           <text class="refresh-icon">🔄</text>
           <text class="refresh-text">换一批</text>
         </view>
       </view>
       <view class="selection-grid">
         <view 
-          wx:for="{{scenes}}" 
-          wx:key="id"
           class="selection-item {{selectedScene === item.id ? 'selected' : ''}}"
-          bindtap="selectScene"
+          wx:for="{{scenes}}"
+          wx:key="id"
           data-id="{{item.id}}"
-          hover-class="hover"
+          bindtap="selectScene"
         >
-          <text class="emoji">{{item.emoji}}</text>
+          <text class="emoji">{{item.icon}}</text>
           <text class="selection-name">{{item.name}}</text>
-          <text class="selection-desc">{{item.description}}</text>
         </view>
       </view>
-    </view>
 
-    <view class="section" wx:if="{{selectedScene}}">
-      <view class="section-header">
-        <view class="section-title">选择故事的风格</view>
-        <view class="refresh-btn" bindtap="refreshOptions">
+      <!-- 风格选择 -->
+      <view class="selection-header">
+        <text class="selection-title">选择风格</text>
+        <view class="refresh-btn" bindtap="refreshStyles">
           <text class="refresh-icon">🔄</text>
           <text class="refresh-text">换一批</text>
         </view>
       </view>
       <view class="selection-grid">
         <view 
-          wx:for="{{styles}}" 
-          wx:key="id"
           class="selection-item {{selectedStyle === item.id ? 'selected' : ''}}"
-          bindtap="selectStyle"
+          wx:for="{{styles}}"
+          wx:key="id"
           data-id="{{item.id}}"
-          hover-class="hover"
+          bindtap="selectStyle"
         >
-          <text class="emoji">{{item.emoji}}</text>
+          <text class="emoji">{{item.icon}}</text>
           <text class="selection-name">{{item.name}}</text>
-          <text class="selection-desc">{{item.description}}</text>
         </view>
       </view>
     </view>
 
     <!-- 底部固定按钮 -->
-    <view class="button-group" wx:if="{{selectedAnimal && selectedScene && selectedStyle}}">
+    <view class="button-group">
       <button 
         class="weui-btn weui-btn_primary"
         type="primary"
         bindtap="goToStoryPage"
+        wx:if="{{selectedAnimal && selectedScene && selectedStyle}}"
       >开始生成故事</button>
       <button 
         class="weui-btn weui-btn_default"
-        bindtap="goToAudioPage"
-        style="margin-top: 20rpx;"
-      >播放故事音频</button>
+        bindtap="goToMyStories"
+      >我的故事</button>
     </view>
   </view>
 

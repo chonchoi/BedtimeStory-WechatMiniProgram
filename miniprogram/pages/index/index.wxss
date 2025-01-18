@@ -6,10 +6,10 @@ page {
 }
 
 .container {
-  padding: 30rpx 0 calc(88rpx + 60rpx + env(safe-area-inset-bottom));
   min-height: 100vh;
+  background-color: #f7f7f7;
+  padding: 30rpx;
   box-sizing: border-box;
-  background-color: #fff;
 }
 
 .section {
@@ -45,9 +45,10 @@ page {
   display: flex;
   align-items: center;
   padding: 12rpx 24rpx;
-  background: #f5f7fa;
+  background: #fff;
   border-radius: 32rpx;
-  transition: all 0.3s ease;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
 }
 
 .refresh-btn:active {
@@ -56,12 +57,12 @@ page {
 }
 
 .refresh-icon {
-  font-size: 32rpx;
+  font-size: 28rpx;
   margin-right: 8rpx;
 }
 
 .refresh-text {
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #666;
 }
 
@@ -69,7 +70,7 @@ page {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20rpx;
-  padding: 0;
+  margin-bottom: 40rpx;
 }
 
 .selection-item {
@@ -79,31 +80,17 @@ page {
   align-items: center;
   justify-content: center;
   background: #fff;
-  padding: 30rpx 16rpx;
-  border-radius: 24rpx;
-  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.selection-item::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24rpx;
+  padding: 30rpx 20rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
   border: 4rpx solid transparent;
-  transition: all 0.3s ease;
 }
 
 .selection-item.selected {
-  background: #f0fff5;
-  transform: translateY(-4rpx);
-}
-
-.selection-item.selected::after {
+  background: #e6f3ff;
+  transform: translateY(-2rpx);
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
   border-color: #07c160;
 }
 
@@ -134,13 +121,9 @@ page {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20rpx 40rpx calc(20rpx + env(safe-area-inset-bottom));
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 -4rpx 16rpx rgba(0,0,0,0.05);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
+  padding: 30rpx;
+  background: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
 }
 
 .button-group .weui-btn {
@@ -239,7 +222,7 @@ page {
 }
 
 .skeleton {
-  padding: 30rpx;
+  padding: 20rpx;
 }
 
 .skeleton-section {
@@ -247,13 +230,11 @@ page {
 }
 
 .skeleton-title {
-  height: 36rpx;
   width: 200rpx;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 8rpx;
-  margin-bottom: 30rpx;
+  height: 40rpx;
+  background: #eee;
+  margin-bottom: 20rpx;
+  border-radius: 4rpx;
 }
 
 .skeleton-grid {
@@ -263,11 +244,9 @@ page {
 }
 
 .skeleton-item {
+  background: #eee;
   height: 160rpx;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 24rpx;
+  border-radius: 12rpx;
 }
 
 .skeleton-button {
@@ -287,16 +266,16 @@ page {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 1000;
+  background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 
 .guide-content {
   background: #fff;
-  border-radius: 24rpx;
+  border-radius: 16rpx;
   padding: 40rpx;
   width: 80%;
   max-width: 600rpx;
@@ -306,27 +285,25 @@ page {
   font-size: 36rpx;
   font-weight: 600;
   color: #333;
-  margin-bottom: 20rpx;
   text-align: center;
+  margin-bottom: 30rpx;
 }
 
 .guide-desc {
   font-size: 28rpx;
   color: #666;
   line-height: 1.6;
-  margin-bottom: 30rpx;
+  margin-bottom: 40rpx;
   text-align: center;
 }
 
 .guide-btn {
-  width: 100%;
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 40rpx;
-  font-size: 32rpx;
-  color: #fff;
   background: #07c160;
+  color: #fff;
   text-align: center;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  font-size: 30rpx;
 }
 
 /* 选择项的按下状态 */
@@ -391,5 +368,39 @@ page {
 .top-audio-btn .audio-text {
   font-size: 28rpx;
   color: #fff;
+  font-weight: 500;
+}
+
+/* 主内容样式 */
+.main-content {
+  padding-bottom: 180rpx;
+}
+
+/* 选择区域样式 */
+.selection-section {
+  margin-bottom: 40rpx;
+}
+
+.selection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.selection-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.item-emoji {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.item-name {
+  font-size: 28rpx;
+  color: #333;
   font-weight: 500;
 }

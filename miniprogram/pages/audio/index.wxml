@@ -1,5 +1,0 @@
-<view class="container">
-  <view class="audio-tip">
-    <text>正在播放故事音频...</text>
-  </view>
-</view> 
